@@ -1,0 +1,2 @@
+# AlligatorStaticHTML
+Static HTML prototype
