@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html ng-app='trackerCapture'>
+    <head>
+    	<style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style>
+    	<style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+        <title>Tracker Capture</title>
+
+        <meta name="description" content="DHIS 2">
+        <meta name="keywords" content="DHIS 2">        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/jquery.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/ui/jquery-ui.min.js"></script><style type="text/css"></style>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/jquery.plugin.min.js"></script>        
+        
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.picker.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.plus.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.picker.ext.js"></script>
+        
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.coptic.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.ethiopian.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.islamic.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.julian.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.nepali.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.thai.min.js"></script>      
+
+        <link type="text/css" rel="stylesheet" href="../dhis-web-commons/javascripts/jQuery/ui/css/redmond/jquery-ui.css">
+        <link type="text/css" rel="stylesheet" href="../dhis-web-commons/javascripts/jQuery/calendars/css/ui-redmond.calendars.picker.css">
+        
+        <script type="text/javascript" src="../dhis-web-commons/select2/select2.min.js"></script>
+
+        <script type="text/javascript" src="../dhis-web-commons/bootstrap/js/bootstrap.min.js"></script>     
+        <link type="text/css" rel="stylesheet" href="../dhis-web-commons/bootstrap/css/bootstrap.min.css">
+        
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/d3/d3.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/nvd3/nv.d3.min.js"></script>
+        <link type="text/css" rel="stylesheet" media="screen" href="../dhis-web-commons/javascripts/nvd3/nv.d3.css">  
+
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/angular.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/angular-resource.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/angular-route.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/angular-cookies.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/angular-animate.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/angular-messages.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/angular-sanitize.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/ui-bootstrap.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/moment/moment-with-langs.min.js"></script>
+
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/underscore.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.util.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/commons.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/commons.ajax.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.availability.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.trigger.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/lists.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/periodTypeNoDep.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/json2.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.validation.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.storage.ss.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.storage.ls.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.storage.idb.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.storage.memory.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.storage.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.contextmenu.js"></script>
+        
+        <script src="../dhis-web-commons/ouwt/ouwt.js"></script>
+        <script src="scripts/tracker-capture.js"></script>
+
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/plugins/select.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/plugins/select2.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/plugins/angularjs-nvd3-directives.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/plugins/angularLocalStorage.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/plugins/angular-translate.min.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/angular/plugins/ng-infinite-scroll.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.angular.directives.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.angular.map.directive.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.angular.services.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.angular.validations.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.angular.filters.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.angular.controllers.js"></script>
+        
+        <script type="text/javascript" src="scripts/app.js"></script>
+        <script type="text/javascript" src="scripts/services.js"></script>
+        <script type="text/javascript" src="scripts/filters.js"></script>
+        <script type="text/javascript" src="scripts/directives.js"></script>        
+        <script type="text/javascript" src="scripts/controllers.js"></script>
+        <script type="text/javascript" src="scripts/leftbar-menu-controller.js"></script>
+        <script type="text/javascript" src="scripts/report-types-controller.js"></script>        
+        <script type="text/javascript" src="scripts/ng-csv.js"></script>
+        <script type="text/javascript" src="scripts/sticky.min.js"></script>
+        <script type="text/javascript" src="components/dashboard/dashboard-controller.js"></script>
+        <script type="text/javascript" src="components/dashboard/dashboard-widgets-controller.js"></script>
+        <script type="text/javascript" src="components/registration/registration-controller.js"></script>
+        <script type="text/javascript" src="components/enrollment/enrollment-controller.js"></script>
+        <script type="text/javascript" src="components/dataentry/dataentry-controller.js"></script>
+        <script type="text/javascript" src="components/report/tei-report-controller.js"></script>
+        <script type="text/javascript" src="components/report/program-summary-controller.js"></script>
+        <script type="text/javascript" src="components/report/program-statistics-controller.js"></script>
+        <script type="text/javascript" src="components/report/overdue-events-controller.js"></script>
+        <script type="text/javascript" src="components/report/upcoming-events-controller.js"></script>
+        <script type="text/javascript" src="components/selected/selected-controller.js"></script>
+        <script type="text/javascript" src="components/relationship/relationship-controller.js"></script>
+        <script type="text/javascript" src="components/teiadd/tei-add-controller.js"></script>
+        <script type="text/javascript" src="components/profile/profile-controller.js"></script>        
+        <script type="text/javascript" src="components/notes/notes-controller.js"></script>
+        <script type="text/javascript" src="components/rulebound/rulebound-controller.js"></script>
+        <script type="text/javascript" src="components/activeprograms/active-programs-controller.js"></script>
+
+        <!-- Menu scripts -->
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.translate.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.menu.js"></script>
+        <script type="text/javascript" src="../dhis-web-commons/javascripts/dhis2/dhis2.menu.ui.js"></script>
+
+
+        <link type="text/css" rel="stylesheet" href="../dhis-web-commons/font-awesome/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" media="screen" href="../dhis-web-commons/css/widgets.css">
+        <link type="text/css" rel="stylesheet" media="screen" href="../dhis-web-commons/css/menu.css">
+        <link type="text/css" rel="stylesheet" media="print" href="../dhis-web-commons/css/print.css">
+        <link type="text/css" rel="stylesheet" href="../dhis-web-commons/javascripts/angular/plugins/select.css">
+        <link type="text/css" rel="stylesheet" href="../dhis-web-commons/javascripts/angular/plugins/select2.css">
+
+        <link type="text/css" rel="stylesheet" href="styles/style.css">
+        <link type="text/css" rel="stylesheet" media="screen" href="styles/screen.css">
+        <link type="text/css" rel="stylesheet" media="print" href="styles/print.css">
+        <script type="text/javascript" src="../main.js"></script>
+
+    	<link href="../dhis-web-commons/css/light_blue/light_blue.css" type="text/css" rel="stylesheet" media="screen,print">
+    </head>
+    <body>
+        <d2-header-bar><div class="header-bar ng-isolate-scope" id="header"><a ng-href="../dhis-web-dashboard-integration/index.action" title="DHIS 2 Demo - DRC " class="title-link" href="../dhis-web-dashboard-integration/index.action"><img class="header-logo" ng-src="../dhis-web-commons/css/light_blue/logo_banner.png" id="headerBanner" src="../dhis-web-commons/css/light_blue/logo_banner.png"><span class="header-text ng-binding" ng-bind="headerBar.title" id="headerText">DHIS 2 Demo - DRC </span></a><div id="headerMessage" class="bold" style="display: none;">You are online</div><div id="dhisDropDownMenu" d2-menu=""><ul id="menuLinkArea"><li id="profileButton"><a id="profileLink" class="menu-link drop-down-menu-link"><i class="fa fa-user"></i>Profile</a><div class="app-menu-dropdown-wrap" data-display-clicked="false" style="display: none; left: 352px;"><div class="app-menu-dropdown"><div class="caret-up-border"></div><div class="caret-up-background"></div><ul class="menuDropDownBox"><li data-id="settings" data-app-name="Settings" data-app-action="../dhis-web-commons-about/userSettings.action"><a href="../dhis-web-commons-about/userSettings.action" class="app-menu-item"><img src="../icons/usersettings.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Settings</span><div class="app-menu-item-description"><span class="bold">Settings</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="profile" data-app-name="Profile" data-app-action="../dhis-web-commons-about/showUpdateUserProfileForm.action"><a href="../dhis-web-commons-about/showUpdateUserProfileForm.action" class="app-menu-item"><img src="../icons/function-profile.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Profile</span><div class="app-menu-item-description"><span class="bold">Profile</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="account" data-app-name="Account" data-app-action="../dhis-web-commons-about/showUpdateUserAccountForm.action"><a href="../dhis-web-commons-about/showUpdateUserAccountForm.action" class="app-menu-item"><img src="../icons/function-account.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Account</span><div class="app-menu-item-description"><span class="bold">Account</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="help" data-app-name="Help" data-app-action="../dhis-web-commons-about/help.action"><a href="../dhis-web-commons-about/help.action" class="app-menu-item"><img src="../icons/function-account.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Help</span><div class="app-menu-item-description"><span class="bold">Help</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="log_out" data-app-name="Log out" data-app-action="../dhis-web-commons-security/logout.action"><a href="../dhis-web-commons-security/logout.action" class="app-menu-item"><img src="../icons/function-log-out.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Log out</span><div class="app-menu-item-description"><span class="bold">Log out</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="about_dhis2" data-app-name="About DHIS 2" data-app-action="../dhis-web-commons-about/about.action"><a href="../dhis-web-commons-about/about.action" class="app-menu-item"><img src="../icons/function-about-dhis2.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>About DHIS 2</span><div class="app-menu-item-description"><span class="bold">About DHIS 2</span><i class="fa fa-arrows"></i><p></p></div></a></li></ul><div class="menu-drop-down-buttons"></div></div></div></li><li id="applicationsButton"><a id="applicationsLink" class="menu-link drop-down-menu-link"><i class="fa fa-th"></i>Apps</a><div class="app-menu-dropdown-wrap" data-display-clicked="false" style="display: none; left: 247px;"><div class="app-menu-dropdown"><div class="caret-up-border"></div><div class="caret-up-background"></div><div class="menu-drop-down-wrap"><div class="menu-drop-down-scroll"><div class="apps-search-wrap"><input class="apps-search" type="text" placeholder="Search apps"><i class="apps-search-clear fa fa-times-circle"></i></div><ul class="menuDropDownBox"><li data-id="dhis-web-dashboard-integration" data-app-name="Dashboard" data-app-action="../dhis-web-dashboard-integration/index.action"><a href="../dhis-web-dashboard-integration/index.action" class="app-menu-item"><img src="../icons/dhis-web-dashboard-integration.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Dashboard</span><div class="app-menu-item-description"><span class="bold">Dashboard</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-pivot" data-app-name="Pivot Table" data-app-action="../dhis-web-pivot/index.action"><a href="../dhis-web-pivot/index.action" class="app-menu-item"><img src="../icons/dhis-web-pivot.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Pivot Table</span><div class="app-menu-item-description"><span class="bold">Pivot Table</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-visualizer" data-app-name="Data Visualizer" data-app-action="../dhis-web-visualizer/index.action"><a href="../dhis-web-visualizer/index.action" class="app-menu-item"><img src="../icons/dhis-web-visualizer.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Data Visualizer</span><div class="app-menu-item-description"><span class="bold">Data Visualizer</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-mapping" data-app-name="GIS" data-app-action="../dhis-web-mapping/index.action"><a href="../dhis-web-mapping/index.action" class="app-menu-item"><img src="../icons/dhis-web-mapping.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>GIS</span><div class="app-menu-item-description"><span class="bold">GIS</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-dataentry" data-app-name="Data Entry" data-app-action="../dhis-web-dataentry/index.action"><a href="../dhis-web-dataentry/index.action" class="app-menu-item"><img src="../icons/dhis-web-dataentry.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Data Entry</span><div class="app-menu-item-description"><span class="bold">Data Entry</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-event-visualizer" data-app-name="Event Visualizer" data-app-action="../dhis-web-event-visualizer/index.action"><a href="../dhis-web-event-visualizer/index.action" class="app-menu-item"><img src="../icons/dhis-web-event-visualizer.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Event Visualizer</span><div class="app-menu-item-description"><span class="bold">Event Visualizer</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-event-reports" data-app-name="Event Reports" data-app-action="../dhis-web-event-reports/index.action"><a href="../dhis-web-event-reports/index.action" class="app-menu-item"><img src="../icons/dhis-web-event-reports.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Event Reports</span><div class="app-menu-item-description"><span class="bold">Event Reports</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-event-capture" data-app-name="Event Capture" data-app-action="../dhis-web-event-capture/index.action"><a href="../dhis-web-event-capture/index.action" class="app-menu-item"><img src="../icons/dhis-web-event-capture.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Event Capture</span><div class="app-menu-item-description"><span class="bold">Event Capture</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-tracker-capture" data-app-name="Tracker Capture" data-app-action="../dhis-web-tracker-capture/index.action"><a href="../dhis-web-tracker-capture/index.action" class="app-menu-item"><img src="../icons/dhis-web-tracker-capture.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Tracker Capture</span><div class="app-menu-item-description"><span class="bold">Tracker Capture</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-reporting" data-app-name="Reports" data-app-action="../dhis-web-reporting/index.action"><a href="../dhis-web-reporting/index.action" class="app-menu-item"><img src="../icons/dhis-web-reporting.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Reports</span><div class="app-menu-item-description"><span class="bold">Reports</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-maintenance-dataadmin" data-app-name="Data Administration" data-app-action="../dhis-web-maintenance-dataadmin/index.action"><a href="../dhis-web-maintenance-dataadmin/index.action" class="app-menu-item"><img src="../icons/dhis-web-maintenance-dataadmin.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Data Administration</span><div class="app-menu-item-description"><span class="bold">Data Administration</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-maintenance-datadictionary" data-app-name="Data Elements / Indicators" data-app-action="../dhis-web-maintenance-datadictionary/index.action"><a href="../dhis-web-maintenance-datadictionary/index.action" class="app-menu-item"><img src="../icons/dhis-web-maintenance-datadictionary.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Data Elements / Indicators</span><div class="app-menu-item-description"><span class="bold">Data Elements / Indicators</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-maintenance-dataset" data-app-name="Data Sets" data-app-action="../dhis-web-maintenance-dataset/index.action"><a href="../dhis-web-maintenance-dataset/index.action" class="app-menu-item"><img src="../icons/dhis-web-maintenance-dataset.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Data Sets</span><div class="app-menu-item-description"><span class="bold">Data Sets</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-maintenance-organisationunit" data-app-name="Organisation Units" data-app-action="../dhis-web-maintenance-organisationunit/index.action"><a href="../dhis-web-maintenance-organisationunit/index.action" class="app-menu-item"><img src="../icons/dhis-web-maintenance-organisationunit.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Organisation Units</span><div class="app-menu-item-description"><span class="bold">Organisation Units</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-maintenance-program" data-app-name="Programs / Attributes" data-app-action="../dhis-web-maintenance-program/index.action"><a href="../dhis-web-maintenance-program/index.action" class="app-menu-item"><img src="../icons/dhis-web-maintenance-program.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Programs / Attributes</span><div class="app-menu-item-description"><span class="bold">Programs / Attributes</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-maintenance-user" data-app-name="Users" data-app-action="../dhis-web-maintenance-user/index.action"><a href="../dhis-web-maintenance-user/index.action" class="app-menu-item"><img src="../icons/dhis-web-maintenance-user.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Users</span><div class="app-menu-item-description"><span class="bold">Users</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-validationrule" data-app-name="Data Quality" data-app-action="../dhis-web-validationrule/index.action"><a href="../dhis-web-validationrule/index.action" class="app-menu-item"><img src="../icons/dhis-web-validationrule.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Data Quality</span><div class="app-menu-item-description"><span class="bold">Data Quality</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-importexport" data-app-name="Import-Export" data-app-action="../dhis-web-importexport/index.action"><a href="../dhis-web-importexport/index.action" class="app-menu-item"><img src="../icons/dhis-web-importexport.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Import-Export</span><div class="app-menu-item-description"><span class="bold">Import-Export</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-light" data-app-name="Mobile (Light)" data-app-action="../light/index.action"><a href="../light/index.action" class="app-menu-item"><img src="../icons/dhis-web-light.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Mobile (Light)</span><div class="app-menu-item-description"><span class="bold">Mobile (Light)</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-mobile" data-app-name="Mobile (Smartphone)" data-app-action="../mobile/index.action"><a href="../mobile/index.action" class="app-menu-item"><img src="../icons/dhis-web-mobile.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Mobile (Smartphone)</span><div class="app-menu-item-description"><span class="bold">Mobile (Smartphone)</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-maintenance-appmanager" data-app-name="App Management" data-app-action="../dhis-web-maintenance-appmanager/index.action"><a href="../dhis-web-maintenance-appmanager/index.action" class="app-menu-item"><img src="../icons/dhis-web-maintenance-appmanager.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>App Management</span><div class="app-menu-item-description"><span class="bold">App Management</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-maintenance-mobile" data-app-name="Mobile Configuration" data-app-action="../dhis-web-maintenance-mobile/index.action"><a href="../dhis-web-maintenance-mobile/index.action" class="app-menu-item"><img src="../icons/dhis-web-maintenance-mobile.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Mobile Configuration</span><div class="app-menu-item-description"><span class="bold">Mobile Configuration</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-sms" data-app-name="SMS" data-app-action="../sms/index.action"><a href="../sms/index.action" class="app-menu-item"><img src="../icons/dhis-web-sms.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>SMS</span><div class="app-menu-item-description"><span class="bold">SMS</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-cache-cleaner" data-app-name="Browser Cache Cleaner" data-app-action="../dhis-web-cache-cleaner/index.action"><a href="../dhis-web-cache-cleaner/index.action" class="app-menu-item"><img src="../icons/dhis-web-cache-cleaner.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Browser Cache Cleaner</span><div class="app-menu-item-description"><span class="bold">Browser Cache Cleaner</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="dhis-web-settings" data-app-name="Settings" data-app-action="../dhis-web-settings/index.action"><a href="../dhis-web-settings/index.action" class="app-menu-item"><img src="../icons/dhis-web-settings.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Settings</span><div class="app-menu-item-description"><span class="bold">Settings</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="Metadata package installer" data-app-name="Metadata package installer" data-app-action="https://play.dhis2.org/demo/api/apps/metadata-installer/index.html"><a href="https://play.dhis2.org/demo/api/apps/metadata-installer/index.html" class="app-menu-item"><img src="https://play.dhis2.org/demo/api/apps/metadata-installer/icons/export.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Metadata package installer</span><div class="app-menu-item-description"><span class="bold">Metadata package installer</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="League Tables" data-app-name="League Tables" data-app-action="https://play.dhis2.org/demo/api/apps/league_tables/index.html"><a href="https://play.dhis2.org/demo/api/apps/league_tables/index.html" class="app-menu-item"><img src="https://play.dhis2.org/demo/api/apps/league_tables/league_tables.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>League Tables</span><div class="app-menu-item-description"><span class="bold">League Tables</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="BlackBird" data-app-name="BlackBird" data-app-action="https://play.dhis2.org/demo/api/apps/blackbird3/index.html"><a href="https://play.dhis2.org/demo/api/apps/blackbird3/index.html" class="app-menu-item"><img src="https://play.dhis2.org/demo/api/apps/blackbird3//img/icon.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>BlackBird</span><div class="app-menu-item-description"><span class="bold">BlackBird</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="LMISLight" data-app-name="LMISLight" data-app-action="https://play.dhis2.org/demo/api/apps/deliciouscake//index.html"><a href="https://play.dhis2.org/demo/api/apps/deliciouscake//index.html" class="app-menu-item"><img src="../icons/program.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>LMISLight</span><div class="app-menu-item-description"><span class="bold">LMISLight</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="INF 5750 Example" data-app-name="INF 5750 Example" data-app-action="https://play.dhis2.org/demo/api/apps/inf5750-example-master/index.html"><a href="https://play.dhis2.org/demo/api/apps/inf5750-example-master/index.html" class="app-menu-item"><img src="https://play.dhis2.org/demo/api/apps/inf5750-example-master/api.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>INF 5750 Example</span><div class="app-menu-item-description"><span class="bold">INF 5750 Example</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="Orga" data-app-name="Orga" data-app-action="https://play.dhis2.org/demo/api/apps/gdfgdf/index.html"><a href="https://play.dhis2.org/demo/api/apps/gdfgdf/index.html" class="app-menu-item"><img src="https://play.dhis2.org/demo/api/apps/gdfgdf//img/icon-48.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Orga</span><div class="app-menu-item-description"><span class="bold">Orga</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="Example Application" data-app-name="Example Application" data-app-action="https://play.dhis2.org/demo/api/apps/bulgogi/index.html"><a href="https://play.dhis2.org/demo/api/apps/bulgogi/index.html" class="app-menu-item"><img src="https://play.dhis2.org/demo/api/apps/bulgogi//img/icon-48.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Example Application</span><div class="app-menu-item-description"><span class="bold">Example Application</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="Custom Js Css" data-app-name="Custom Js Css" data-app-action="https://play.dhis2.org/demo/api/apps/customjscss/index.html"><a href="https://play.dhis2.org/demo/api/apps/customjscss/index.html" class="app-menu-item"><img src="https://play.dhis2.org/demo/api/apps/customjscss/img/Logo_48.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Custom Js Css</span><div class="app-menu-item-description"><span class="bold">Custom Js Css</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="Tracker Capture" data-app-name="Tracker Capture" data-app-action="https://play.dhis2.org/demo/api/apps/Archive/index.html"><a href="https://play.dhis2.org/demo/api/apps/Archive/index.html" class="app-menu-item"><img src="../icons/program.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Tracker Capture</span><div class="app-menu-item-description"><span class="bold">Tracker Capture</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="Orgunit" data-app-name="Orgunit" data-app-action="https://play.dhis2.org/demo/api/apps/app/index.html"><a href="https://play.dhis2.org/demo/api/apps/app/index.html" class="app-menu-item"><img src="https://play.dhis2.org/demo/api/apps/app//img/icons/org-logo-48.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>Orgunit</span><div class="app-menu-item-description"><span class="bold">Orgunit</span><i class="fa fa-arrows"></i><p></p></div></a></li><li data-id="LMIS_v2" data-app-name="LMIS_v2" data-app-action="https://play.dhis2.org/demo/api/apps/LMIS//index.html"><a href="https://play.dhis2.org/demo/api/apps/LMIS//index.html" class="app-menu-item"><img src="../icons/program.png" onerror="javascript: this.onerror=null; this.src = '../icons/program.png';"><span>LMIS_v2</span><div class="app-menu-item-description"><span class="bold">LMIS_v2</span><i class="fa fa-arrows"></i><p></p></div></a></li></ul></div></div><div class="menu-drop-down-buttons"><div class="apps-menu-bottom-button apps-menu-more"><a href="../dhis-web-commons-about/modules.action">More apps</a></div><div class="apps-menu-bottom-button apps-scroll apps-scroll-up"><a class="fa fa-caret-up" href="#"></a></div><div class="apps-menu-bottom-button apps-scroll apps-scroll-down"><a class="fa fa-caret-down" href="#"></a></div></div></div></div></li></ul></div></div></d2-header-bar>
+
+        <div ng-view><div ng-view="" class="ng-scope"><div class="container-1-1 ng-scope">
+    <!-- dashboard top menu begins-->
+    <div class="col-sm-12 small-vertical-spacing  hideInPrint">
+        
+        <!-- dashboard buttons begin -->
+        <button type="button" class="btn btn-default ng-binding" ng-click="back()">Back</button>
+        
+        <button ng-disabled="!previousTeiExists" type="button" class="btn btn-default small-horizonal-spacing" ng-click="fetchTei('PREV')" title="Previous"><i class="fa fa-caret-left"></i></button>
+        
+        <button ng-disabled="!nextTeiExists" type="button" class="btn btn-default small-horizonal-spacing" ng-click="fetchTei('NEXT')" title="Next"><i class="fa fa-caret-right"></i></button>
+        
+        <select ng-model="selectedProgram" class="form-control-program ng-pristine ng-untouched ng-valid" ng-options="program as program.name for program in programs | orderBy: 'name'" ng-disabled="programs.length < 1" ng-change="applySelectedProgram()"><option value="" class="ng-binding">[Please select a program]</option><option value="0" selected="selected" label="Child Programme">Child Programme</option><option value="1" label="MNCH / PNC (Adult Woman)">MNCH / PNC (Adult Woman)</option><option value="2" label="TB program">TB program</option></select>
+        <!-- dashboard buttons end -->
+        
+        <!-- dashboard setting begins -->
+        <div class="pull-right">
+            <button type="button" title="Stick right side widgets" class="btn btn-default unstick" ng-class="{true: 'stick', false: 'unstick'} [!stickyDisabled]" ng-click="stickUnstick()">                    
+                <i class="fa fa-thumb-tack"></i>
+            </button>
+            <div class="btn-group trim" dropdown="" is-open="status.isopen">
+                <button type="button" title="Settings" class="btn btn-default dropdown-toggle" dropdown-toggle="" aria-haspopup="true" aria-expanded="false">                    
+                    <i class="fa fa-cog"></i>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li><a href="" ng-click="showHideWidgets()" class="ng-binding">Show/hide widgets</a></li>
+                    <!-- ngIf: userAuthority.canAdministerDashboard --><li ng-if="userAuthority.canAdministerDashboard" class="ng-scope"><a href="" ng-click="saveDashboarLayoutAsDefault()" class="ng-binding">Save dashboard layout as default</a></li><!-- end ngIf: userAuthority.canAdministerDashboard -->
+                    <li><a href="" ng-click="activiateTEI()" class="ng-binding">Deactivate Person</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- dashboard setting ends -->
+        
+    </div>
+    <!-- dashboard top menu ends-->
+    
+    <!-- dashboard widgets begin -->
+    <div class="col-sm-12">
+        <div class="row">
+            <!-- dashboard bigger widgets begin -->
+            <div ng-class="widgetSize.bigger" class="col-sm-6 col-md-8">
+                <div id="biggerWidget" d2-sortable="" bigger-widgets="{{" dashboardwidgets="" |="" filter:="" {parent:="" 'biggerwidget'}="" }}="" smaller-widgets="{{" 'smallerwidget'}="" class="row connectedSortable empty-dashboard-container ui-sortable">
+                    <!-- ngRepeat: biggerWidget in dashboardWidgets | orderBy:'order' | filter: {parent: 'biggerWidget'} --><div class="col-sm-12 ng-scope" id="enrollment" ng-repeat="biggerWidget in dashboardWidgets | orderBy:'order' | filter: {parent: 'biggerWidget'}" "="">
+                        <!-- ngInclude: biggerWidget.view --><div ng-show="biggerWidget.show" ng-include="biggerWidget.view" ng-class="{true: 'hideInPrint'} [biggerWidget.title != 'report']" class="ng-scope hideInPrint"><div class="panel panel-info ng-scope" ng-controller="EnrollmentController">
+    <div class="panel-heading handle bold ng-binding">
+
+        Enrollment
+        <span class="nav-pills ng-hide" ng-show="selectedProgram &amp;&amp; currentEnrollment &amp;&amp; currentEnrollment !== selectedEnrollment">
+            | <a href="" ng-click="loadEnrollmentDetails(currentEnrollment)" title="Current"><span ng-class="{true: 'widget - link - active', false: 'widget - link'} [showEnrollmentDiv]" class="ng-binding widget - link">Current</span></a>
+        </span>
+        <span class="nav-pills ng-hide" ng-show="selectedProgram &amp;&amp; !currentEnrollment &amp;&amp; !selectedTei.inactive">
+            | <a href="" ng-click="showNewEnrollment()" title="New"><span ng-class="{true: 'widget - link - active', false: 'widget - link'} [showEnrollmentDiv]" class="ng-binding widget - link">New</span></a>
+        </span>
+        <span class="nav-pills ng-hide" ng-show="hasEnrollmentHistory">
+            | <a href="" ng-click="showEnrollmentHistory()" title="History"><span ng-class="{true: 'widget - link - active', false: 'widget - link'} [showEnrollmentHistoryDiv]" class="ng-binding widget - link">History</span></a>
+        </span>       
+
+        <span class="pull-right widget-link">            
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(enrollmentWidget)">
+                <span ng-show="enrollmentWidget.expand"><i class="fa fa-chevron-up" title="Collapse"></i></span>
+                <span ng-show="!enrollmentWidget.expand" class="ng-hide"><i class="fa fa-chevron-down" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(enrollmentWidget)" title="Remove"><i class="fa fa-times-circle"></i></a>            
+        </span>
+    </div>
+    <div ng-show="enrollmentWidget.expand" class="panel-body dashboard-widget-container">
+        
+        <!-- operations on selected enrollment begins -->
+        <!-- ngIf: selectedEnrollment.enrollment --><div ng-if="selectedEnrollment.enrollment" class="ng-scope">
+
+            <table class="table-borderless table-striped">
+                <tbody><tr class="col-md-12">
+                    <td class="col-md-6 ng-binding">
+                        Enrolling organisation unit
+                    </td>
+                    <td class="col-md-6">
+                        <input type="text" class="form-control" value="Kundorma CHP" ng-disabled="true" disabled="disabled">
+                    </td>
+                </tr>
+                <tr class="col-md-12">
+                    <td class="col-md-6 ng-binding">
+                        Date of enrollment
+                    </td>
+                    <td class="col-md-6">
+                        <input type="text" placeholder="yyyy-MM-dd" class="form-control ng-pristine ng-untouched ng-valid hasCalendarsPicker" d2-date="" ng-model="selectedEnrollment.enrollmentDate" ng-disabled="true" disabled="disabled">
+                    </td>
+                </tr>
+                <!-- ngIf: selectedProgram.displayIncidentDate --><tr class="col-md-12 ng-scope" ng-if="selectedProgram.displayIncidentDate">                    
+                    <td class="col-md-6 ng-binding">
+                        Date of birth
+                    </td>
+                    <td class="col-md-6">
+                        <input type="text" placeholder="yyyy-MM-dd" class="form-control ng-pristine ng-untouched ng-valid hasCalendarsPicker" d2-date="" ng-model="selectedEnrollment.incidentDate" ng-disabled="true" disabled="disabled">
+                    </td>
+                </tr><!-- end ngIf: selectedProgram.displayIncidentDate -->                
+            </tbody></table>
+
+            <div class="vertical-spacing horizonal-spacing">
+
+                <button type="button" class="btn btn-primary ng-binding" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || selectedTei.inactive" ng-click="completeEnrollment()">
+                    Complete
+                </button>
+                <button type="button" class="btn btn-warning ng-binding" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || selectedTei.inactive" ng-click="terminateEnrollment()">
+                    Terminate
+                </button>   
+
+                <!-- ngIf: selectedEnrollment.followup -->
+                <!-- ngIf: !selectedEnrollment.followup --><button type="button" title="Mark for follow-up" class="btn btn-default horizonal-spacing ng-scope" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || selectedTei.inactive" ng-if="!selectedEnrollment.followup" ng-click="markForFollowup()">
+                    <i class="fa fa-exclamation-triangle"></i>
+                </button><!-- end ngIf: !selectedEnrollment.followup -->
+
+            </div>
+
+        </div><!-- end ngIf: selectedEnrollment.enrollment -->
+        <!-- operations on selected enrollment ends -->
+
+        <!-- new enrollment registration form begins -->
+        <!-- ngIf: showEnrollmentDiv -->
+        <!-- new enrollment registration form ends -->
+
+        <!-- operations on historical enrollment begins -->
+        <!-- ngIf: showEnrollmentHistoryDiv && !selectedEnrollment -->
+        <!-- operations on historical enrollment ends -->
+
+        <!-- various alerts begin -->
+        <!-- ngIf: selectedProgram && !selectedEnrollment && !showEnrollmentDiv && !hasEnrollmentHistory -->
+        <!-- ngIf: selectedProgram && !selectedEnrollment && !showEnrollmentDiv && !showEnrollmentHistoryDiv && hasEnrollmentHistory -->
+        <!-- ngIf: !selectedProgram && programExists -->
+        <!-- ngIf: !programExists -->
+        <!-- various alerts end -->
+
+    </div>
+</div>
+</div>
+                    </div><!-- end ngRepeat: biggerWidget in dashboardWidgets | orderBy:'order' | filter: {parent: 'biggerWidget'} --><div class="col-sm-12 ng-scope" id="indicators" ng-repeat="biggerWidget in dashboardWidgets | orderBy:'order' | filter: {parent: 'biggerWidget'}" "="">
+                        <!-- ngInclude: biggerWidget.view --><div ng-show="biggerWidget.show" ng-include="biggerWidget.view" ng-class="{true: 'hideInPrint'} [biggerWidget.title != 'report']" class="ng-scope hideInPrint"><div class="panel panel-info ng-scope" ng-controller="RuleBoundController">
+    <div class="panel-heading handle bold ng-binding">
+        Indicators
+        <span class="pull-right">
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(this.widget)">
+                <span ng-show="this.widget.expand"><i class="fa fa-chevron-up" title="Collapse"></i></span>
+                <span ng-show="!this.widget.expand" class="ng-hide"><i class="fa fa-chevron-down" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(this.widget)" title="Remove"><i class="fa fa-times-circle"></i></a>            
+        </span>        
+    </div>        
+    <div ng-show="this.widget.expand" class="panel-body dashboard-widget-container">        
+        <!-- ngIf: showKeyDataSection --><div class="panel-body ng-scope" ng-if="showKeyDataSection">
+            <!-- ngRepeat: (key,item) in displayKeyDataEffects --><div ng-repeat="(key,item) in displayKeyDataEffects" ng-show="item.ineffect" class="info-container ng-scope">
+                <div class="info-container-heading ng-binding">Average weight</div>
+                <div class="info-container-text ng-binding">3209.5</div>          
+            </div><!-- end ngRepeat: (key,item) in displayKeyDataEffects --><div ng-repeat="(key,item) in displayKeyDataEffects" ng-show="item.ineffect" class="info-container ng-scope">
+                <div class="info-container-heading ng-binding">Measles + Yellow fever doses</div>
+                <div class="info-container-text ng-binding">1</div>          
+            </div><!-- end ngRepeat: (key,item) in displayKeyDataEffects -->
+        </div><!-- end ngIf: showKeyDataSection -->   
+        <!-- ngIf: showTextSection -->
+        <div ng-show="!showKeyDataSection &amp;&amp; !showTextSection" class="alert alert-warning ng-binding ng-hide">No indicators exist</div> 
+    </div>
+</div>
+</div>
+                    </div><!-- end ngRepeat: biggerWidget in dashboardWidgets | orderBy:'order' | filter: {parent: 'biggerWidget'} --><div class="col-sm-12 ng-scope" id="dataentry" ng-repeat="biggerWidget in dashboardWidgets | orderBy:'order' | filter: {parent: 'biggerWidget'}" "="">
+                        <!-- ngInclude: biggerWidget.view --><div ng-show="biggerWidget.show" ng-include="biggerWidget.view" ng-class="{true: 'hideInPrint'} [biggerWidget.title != 'report']" class="ng-scope hideInPrint"><div class="panel panel-info ng-scope" ng-controller="DataEntryController">
+    <div class="panel-heading handle bold ng-binding">
+        Data Entry        
+
+        <span class="pull-right widget-link">
+
+            <a href="" ng-click="toggleEventsTableDisplay()" title="Show events as tables where possible" ng-show="stagesCanBeShownAsTable" class=""><!-- ngIf: !showEventsAsTables --><span ng-if="!showEventsAsTables" class="ng-scope"><i class="fa fa-bars vertical-center"></i></span><!-- end ngIf: !showEventsAsTables --><!-- ngIf: showEventsAsTables --></a>
+            <a href="" ng-click="filterEvents = !filterEvents" title="List all events" ng-show="eventFilteringRequired" class="ng-hide"><!-- ngIf: !filterEvents --><!-- ngIf: filterEvents --><span ng-if="filterEvents" class="ng-scope"><i class="fa fa-list vertical-center"></i></span><!-- end ngIf: filterEvents --></a>
+            <a href="" ng-click="toggleLegend()" title="What do the colors mean?" class="small-horizonal-spacing"><i class="fa fa-info-circle vertical-center"></i></a>
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(dataentryWidget)">
+                <span ng-show="dataentryWidget.expand"><i class="fa fa-chevron-up vertical-center" title="Collapse"></i></span>
+                <span ng-show="!dataentryWidget.expand" class="ng-hide"><i class="fa fa-chevron-down vertical-center" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(dataentryWidget)" title="Remove"><i class="fa fa-times-circle vertical-center"></i></a>            
+        </span>        
+    </div>
+
+    <div ng-show="dataentryWidget.expand" class="panel-body dashboard-widget-container">
+        <!-- ngIf: showEventColors -->
+
+        <!-- ngIf: selectedEnrollment && selectedEnrollment.enrollment --><div class="table-responsive ng-scope" ng-if="selectedEnrollment &amp;&amp; selectedEnrollment.enrollment">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <!-- ngRepeat: stage in programStages --><th class="active ng-binding ng-scope" style="vertical-align:middle" ng-repeat="stage in programStages">                            
+                            Birth  
+
+                            <!-- event add/filter icon begins -->
+                            <span class="pull-right">
+
+                                <!-- ngIf: stageNeedsEvent(stage) && selectedEnrollment.status === 'ACTIVE' -->
+                            </span>
+                            <!-- event add/filter icon ends -->
+
+                        </th><!-- end ngRepeat: stage in programStages --><th class="active ng-binding ng-scope" style="vertical-align:middle" ng-repeat="stage in programStages">                            
+                            Baby Postnatal  
+
+                            <!-- event add/filter icon begins -->
+                            <span class="pull-right">
+
+                                <!-- ngIf: stageNeedsEvent(stage) && selectedEnrollment.status === 'ACTIVE' -->
+                            </span>
+                            <!-- event add/filter icon ends -->
+
+                        </th><!-- end ngRepeat: stage in programStages -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!-- ngRepeat: stage in programStages --><td ng-repeat="stage in programStages" class="ng-scope">
+                            <!-- ngRepeat: dhis2Event in eventsByStage[stage.id] --><div class="inline-block ng-scope" ng-repeat="dhis2Event in eventsByStage[stage.id]">
+                                <div class="event-container ng-binding alert-info  current-stage" ng-class="getEventStyle(dhis2Event)" ng-show="!currentPeriod[stage.id] || !filterEvents || currentPeriod[stage.id] &amp;&amp; currentPeriod[stage.id].event === dhis2Event.event" ng-click="showDataEntry(dhis2Event, false)">
+                                    Kundorma CHP<br>
+                                    2014-07-20<br>
+                                    <!-- ngIf: eventsByStage[stage.id].length > 1 && !filterEvents -->
+                                </div>
+                            </div><!-- end ngRepeat: dhis2Event in eventsByStage[stage.id] -->
+                            <!-- ngIf: eventsByStage[stage.id].length > 1 && filterEvents -->
+                            <!-- ngIf: !eventsByStage[stage.id] || eventsByStage[stage.id].length < 1 -->
+                        </td><!-- end ngRepeat: stage in programStages --><td ng-repeat="stage in programStages" class="ng-scope">
+                            <!-- ngRepeat: dhis2Event in eventsByStage[stage.id] --><div class="inline-block ng-scope" ng-repeat="dhis2Event in eventsByStage[stage.id]">
+                                <div class="event-container ng-binding alert-info" ng-class="getEventStyle(dhis2Event)" ng-show="!currentPeriod[stage.id] || !filterEvents || currentPeriod[stage.id] &amp;&amp; currentPeriod[stage.id].event === dhis2Event.event" ng-click="showDataEntry(dhis2Event, false)">
+                                    Kundorma CHP<br>
+                                    2014-08-10<br>
+                                    <!-- ngIf: eventsByStage[stage.id].length > 1 && !filterEvents -->
+                                </div>
+                            </div><!-- end ngRepeat: dhis2Event in eventsByStage[stage.id] -->
+                            <!-- ngIf: eventsByStage[stage.id].length > 1 && filterEvents -->
+                            <!-- ngIf: !eventsByStage[stage.id] || eventsByStage[stage.id].length < 1 -->
+                        </td><!-- end ngRepeat: stage in programStages -->
+                    </tr>
+                </tbody>
+            </table>
+        </div><!-- end ngIf: selectedEnrollment && selectedEnrollment.enrollment -->
+
+        <!-- ngIf: !selectedEnrollment || !selectedEnrollment.enrollment -->
+
+        <form name="outerForm" novalidate="" class="ng-pristine ng-valid ng-valid-required ng-valid-number">
+            <!-- ngIf: currentEvent --><div ng-if="currentEvent" class="ng-scope">
+
+                <!-- event dates/scheduling begin -->
+                <!-- ngIf: (displayCustomForm !== 'TABLE') && !currentStage.periodType --><div class="row ng-scope" ng-if="(displayCustomForm !== 'TABLE') &amp;&amp; !currentStage.periodType">
+
+                    <div class="col-md-6 ng-binding">
+                        Report date
+                        <input type="text" placeholder="yyyy-MM-dd" class="form-control ng-pristine ng-untouched ng-valid hasCalendarsPicker ng-valid-required" ng-class="{'input-success': eventDateSaved}" d2-date="" max-date="0" min-date="" ng-model="currentEvent.eventDate" ng-disabled="currentEvent.status === 'SKIPPED' || currentEvent.enrollmentStatus !== 'ACTIVE' || currentEvent.editingNotAllowed" ng-required="true" blur-or-change="saveEventDate()" required="required">
+                        <!-- ngIf: invalidDate -->
+                    </div>
+                    <div class="col-md-6">
+                        <!-- ngIf: currentEvent.eventDate || currentEvent.status === 'SKIPPED' || currentEvent.dueDate --><span ng-if="currentEvent.eventDate || currentEvent.status === 'SKIPPED' || currentEvent.dueDate" class="ng-binding ng-scope">
+                            Due date
+                        </span><!-- end ngIf: currentEvent.eventDate || currentEvent.status === 'SKIPPED' || currentEvent.dueDate -->
+                        <!-- ngIf: !currentEvent.eventDate && currentEvent.status !== 'SKIPPED' && !selectedEntity.inactive -->                    
+                        <input type="text" placeholder="yyyy-MM-dd" class="form-control ng-pristine ng-untouched ng-valid hasCalendarsPicker" ng-class="{'input-success': dueDateSaved}" d2-date="" ng-model="currentEvent.dueDate" blur-or-change="saveDueDate()" ng-disabled="currentEvent.eventDate || !schedulingEnabled || currentEvent.enrollmentStatus !== 'ACTIVE' || currentEvent.editingNotAllowed" disabled="disabled">
+                        <!-- ngIf: invalidDate -->
+                    </div>                        
+                </div><!-- end ngIf: (displayCustomForm !== 'TABLE') && !currentStage.periodType -->
+                <!-- event dates/scheduling end -->
+
+                <!-- coordinates begin -->
+                <!-- ngIf: currentStage.captureCoordinates && currentEvent.eventDate -->
+                <!-- coordinates begin -->
+
+                <!-- data entry form begins -->
+                <!-- ngIf: currentEvent.eventDate --><div ng-if="currentEvent.eventDate" class="ng-scope">                            
+                    <!-- ngIf: displayCustomForm === 'CUSTOM' -->
+                    <!-- ngIf: displayCustomForm === 'DEFAULT' --><!-- ngInclude: 'components/dataentry/default-form.html' --><div class="clear vertical-spacing ng-scope" ng-if="displayCustomForm === 'DEFAULT'" ng-include="'components/dataentry/default-form.html'">   
+    <!-- ngIf: currentEvent && !currentStage.programStageSections.length --><table class="dhis2-list-table-striped ng-scope" ng-if="currentEvent &amp;&amp; !currentStage.programStageSections.length">
+        <thead>
+            <tr>
+                <th ng-bind="dataElementLabel" class="ng-binding">Data element</th>
+                <th ng-bind="valueLabel" class="ng-binding">Value</th>
+                <!-- ngIf: allowProvidedElsewhereExists -->
+            </tr>
+        </thead>
+        <tbody><!-- ngRepeat: prStDe in currentStage.programStageDataElements --><!-- ngIf: !isHidden(prStDe.dataElement.id) --><tr class="col-md-12 ng-scope" ng-repeat="prStDe in currentStage.programStageDataElements" ng-if="!isHidden(prStDe.dataElement.id)">
+            <td>
+                <span ng-bind="prStDe.dataElement.formName ? prStDe.dataElement.formName : prStDe.dataElement.name" class="ng-binding">Apgar Score</span>
+                <!-- ngIf: prStDe.dataElement.description -->     
+            </td>
+            <td>
+                <ng-form name="innerForm" class="ng-pristine ng-valid ng-valid-required ng-valid-number">
+                    <!-- ngIf: prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: !prStDe.dataElement.optionSetValue --><div ng-if="!prStDe.dataElement.optionSetValue" ng-switch="prStDe.dataElement.valueType" class="ng-scope">
+                        <!-- ngSwitchWhen: NUMBER --><div ng-switch-when="NUMBER" class="ng-scope">
+                            <input type="number" number-type="NUMBER" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" ng-class="getInputNotifcationClass(prStDe.dataElement.id,false, currentEvent)" ng-model="currentEvent[prStDe.dataElement.id]" d2-number-validator="" ng-required="false" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || currentEvent.editingNotAllowed ||&nbsp;assignedFields[prStDe.dataElement.id]" ng-blur="saveDatavalue(prStDe, innerForm.foo)" name="foo">
+                        </div><!-- end ngSwitchWhen: -->
+                        <!-- ngSwitchWhen: INTEGER -->
+                        <!-- ngSwitchWhen: INTEGER_POSITIVE -->
+                        <!-- ngSwitchWhen: INTEGER_NEGATIVE -->
+                        <!-- ngSwitchWhen: INTEGER_ZERO_OR_POSITIVE -->                        
+                        <!-- ngSwitchWhen: LONG_TEXT -->
+                        <!-- ngSwitchWhen: TEXT -->
+                        <!-- ngSwitchWhen: BOOLEAN -->
+                        <!-- ngSwitchWhen: DATE -->
+                        <!-- ngSwitchWhen: TRUE_ONLY -->
+                        <!-- ngSwitchDefault:  -->
+                    </div><!-- end ngIf: !prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: interacted(innerForm.foo) -->
+                    <!-- ngIf: warningMessages[prStDe.dataElement.id] -->
+                    <!-- ngIf: errorMessages[prStDe.dataElement.id] -->
+                </ng-form>                
+            </td>
+            <!-- ngIf: allowProvidedElsewhereExists -->
+        </tr><!-- end ngIf: !isHidden(prStDe.dataElement.id) --><!-- end ngRepeat: prStDe in currentStage.programStageDataElements --><!-- ngIf: !isHidden(prStDe.dataElement.id) --><tr class="col-md-12 ng-scope" ng-repeat="prStDe in currentStage.programStageDataElements" ng-if="!isHidden(prStDe.dataElement.id)">
+            <td>
+                <span ng-bind="prStDe.dataElement.formName ? prStDe.dataElement.formName : prStDe.dataElement.name" class="ng-binding">Apgar comment</span>
+                <!-- ngIf: prStDe.dataElement.description -->     
+            </td>
+            <td>
+                <ng-form name="innerForm" class="ng-pristine ng-valid ng-valid-required">
+                    <!-- ngIf: prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: !prStDe.dataElement.optionSetValue --><div ng-if="!prStDe.dataElement.optionSetValue" ng-switch="prStDe.dataElement.valueType" class="ng-scope">
+                        <!-- ngSwitchWhen: NUMBER -->
+                        <!-- ngSwitchWhen: INTEGER -->
+                        <!-- ngSwitchWhen: INTEGER_POSITIVE -->
+                        <!-- ngSwitchWhen: INTEGER_NEGATIVE -->
+                        <!-- ngSwitchWhen: INTEGER_ZERO_OR_POSITIVE -->                        
+                        <!-- ngSwitchWhen: LONG_TEXT --><div ng-switch-when="LONG_TEXT" class="ng-scope">
+                            <textarea rows="3" ng-class="getInputNotifcationClass(prStDe.dataElement.id,false, currentEvent)" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" ng-model="currentEvent[prStDe.dataElement.id]" ng-required="false" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || currentEvent.editingNotAllowed ||&nbsp;assignedFields[prStDe.dataElement.id]" ng-blur="saveDatavalue(prStDe, innerForm.foo)" name="foo">                            </textarea>
+                        </div><!-- end ngSwitchWhen: -->
+                        <!-- ngSwitchWhen: TEXT -->
+                        <!-- ngSwitchWhen: BOOLEAN -->
+                        <!-- ngSwitchWhen: DATE -->
+                        <!-- ngSwitchWhen: TRUE_ONLY -->
+                        <!-- ngSwitchDefault:  -->
+                    </div><!-- end ngIf: !prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: interacted(innerForm.foo) -->
+                    <!-- ngIf: warningMessages[prStDe.dataElement.id] --><div class="alert alert-warning alert-dismissible ng-binding ng-scope" role="alert" ng-if="warningMessages[prStDe.dataElement.id]">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        It is suggested that an explanation is provided when the Apgar score is below 4
+                    </div><!-- end ngIf: warningMessages[prStDe.dataElement.id] -->
+                    <!-- ngIf: errorMessages[prStDe.dataElement.id] -->
+                </ng-form>                
+            </td>
+            <!-- ngIf: allowProvidedElsewhereExists -->
+        </tr><!-- end ngIf: !isHidden(prStDe.dataElement.id) --><!-- end ngRepeat: prStDe in currentStage.programStageDataElements --><!-- ngIf: !isHidden(prStDe.dataElement.id) --><tr class="col-md-12 ng-scope" ng-repeat="prStDe in currentStage.programStageDataElements" ng-if="!isHidden(prStDe.dataElement.id)">
+            <td>
+                <span ng-bind="prStDe.dataElement.formName ? prStDe.dataElement.formName : prStDe.dataElement.name" class="ng-binding">Weight (g)</span>
+                <!-- ngIf: prStDe.dataElement.description -->     
+            </td>
+            <td>
+                <ng-form name="innerForm" class="ng-pristine ng-valid ng-valid-required ng-valid-number">
+                    <!-- ngIf: prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: !prStDe.dataElement.optionSetValue --><div ng-if="!prStDe.dataElement.optionSetValue" ng-switch="prStDe.dataElement.valueType" class="ng-scope">
+                        <!-- ngSwitchWhen: NUMBER --><div ng-switch-when="NUMBER" class="ng-scope">
+                            <input type="number" number-type="NUMBER" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required ng-valid-number" ng-class="getInputNotifcationClass(prStDe.dataElement.id,false, currentEvent)" ng-model="currentEvent[prStDe.dataElement.id]" d2-number-validator="" ng-required="false" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || currentEvent.editingNotAllowed ||&nbsp;assignedFields[prStDe.dataElement.id]" ng-blur="saveDatavalue(prStDe, innerForm.foo)" name="foo">
+                        </div><!-- end ngSwitchWhen: -->
+                        <!-- ngSwitchWhen: INTEGER -->
+                        <!-- ngSwitchWhen: INTEGER_POSITIVE -->
+                        <!-- ngSwitchWhen: INTEGER_NEGATIVE -->
+                        <!-- ngSwitchWhen: INTEGER_ZERO_OR_POSITIVE -->                        
+                        <!-- ngSwitchWhen: LONG_TEXT -->
+                        <!-- ngSwitchWhen: TEXT -->
+                        <!-- ngSwitchWhen: BOOLEAN -->
+                        <!-- ngSwitchWhen: DATE -->
+                        <!-- ngSwitchWhen: TRUE_ONLY -->
+                        <!-- ngSwitchDefault:  -->
+                    </div><!-- end ngIf: !prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: interacted(innerForm.foo) -->
+                    <!-- ngIf: warningMessages[prStDe.dataElement.id] -->
+                    <!-- ngIf: errorMessages[prStDe.dataElement.id] -->
+                </ng-form>                
+            </td>
+            <!-- ngIf: allowProvidedElsewhereExists -->
+        </tr><!-- end ngIf: !isHidden(prStDe.dataElement.id) --><!-- end ngRepeat: prStDe in currentStage.programStageDataElements --><!-- ngIf: !isHidden(prStDe.dataElement.id) --><tr class="col-md-12 ng-scope" ng-repeat="prStDe in currentStage.programStageDataElements" ng-if="!isHidden(prStDe.dataElement.id)">
+            <td>
+                <span ng-bind="prStDe.dataElement.formName ? prStDe.dataElement.formName : prStDe.dataElement.name" class="ng-binding">ARV at birth</span>
+                <!-- ngIf: prStDe.dataElement.description --><a ng-if="prStDe.dataElement.description" title="Onlu used for birth details." ng-init="showHelpText[prStDe.dataElement.id] = false;" ng-click="showHelpText[prStDe.dataElement.id] = !showHelpText[prStDe.dataElement.id]" class="ng-scope">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    <span ng-show="showHelpText[prStDe.dataElement.id]" class="ng-binding ng-hide"><br>Onlu used for birth details.</span>
+                </a><!-- end ngIf: prStDe.dataElement.description -->     
+            </td>
+            <td>
+                <ng-form name="innerForm" class="ng-pristine ng-valid ng-valid-required">
+                    <!-- ngIf: prStDe.dataElement.optionSetValue --><div ng-if="prStDe.dataElement.optionSetValue" class="ng-scope">
+                        <!-- ngIf: !selectedProgram.dataEntryMethod || optionSets[prStDe.dataElement.optionSet.id].options.length >= 7 --><div ng-if="!selectedProgram.dataEntryMethod || optionSets[prStDe.dataElement.optionSet.id].options.length >= 7" class="ng-scope">
+                            <div class="ui-select-container select2 select2-container ng-valid ng-valid-required select2-allowclear" ng-class="{'select2-container-active select2-dropdown-open open': $select.open, 'select2-container-disabled': $select.disabled, 'select2-container-active': $select.focus, 'select2-allowclear': $select.allowClear &amp;&amp; !$select.isEmpty()}" ng-model="currentEvent[prStDe.dataElement.id]" theme="select2" ng-required="false" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || currentEvent.editingNotAllowed ||&nbsp;assignedFields[prStDe.dataElement.id]" name="foo" on-select="saveDatavalue(prStDe, innerForm.foo)" style="width:100%;"><a class="form-control-ui-select select2-choice ui-select-match" ng-click="$select.toggle($event)" aria-label="Select box select" allow-clear="true" ng-class="getInputNotifcationClass(prStDe.dataElement.id, true)" placeholder="Select or search from the list"><span ng-show="$select.isEmpty()" class="select2-chosen ng-binding ng-hide">Select or search from the list</span> <span ng-hide="$select.isEmpty()" class="select2-chosen" ng-transclude=""><span class="ng-binding ng-scope">Others</span></span> <!-- ngIf: $select.allowClear && !$select.isEmpty() --><abbr ng-if="$select.allowClear &amp;&amp; !$select.isEmpty()" class="select2-search-choice-close ng-scope" ng-click="$select.clear($event)"></abbr><!-- end ngIf: $select.allowClear && !$select.isEmpty() --> <span class="select2-arrow ui-select-toggle"><b></b></span></a><div class="ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active select2-display-none" ng-class="{'select2-display-none': !$select.open}"><div class="select2-search" ng-show="$select.searchEnabled"><input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="combobox" aria-expanded="true" aria-owns="ui-select-choices-0" aria-label="Select box" aria-activedescendant="ui-select-choices-row-0-0" class="ui-select-search select2-input ng-pristine ng-untouched ng-valid" ng-model="$select.search"></div><ul class="ui-select-choices ui-select-choices-content select2-results ng-scope" repeat="option.name as option in optionSets[prStDe.dataElement.optionSet.id].options | filter: $select.search | limitTo:maxOptionSize"><li class="ui-select-choices-group" ng-class="{'select2-result-with-children': $select.choiceGrouped($group) }"><div ng-show="$select.choiceGrouped($group)" class="ui-select-choices-group-label select2-result-label ng-binding ng-hide" ng-bind="$group.name"></div><ul role="listbox" id="ui-select-choices-0" ng-class="{'select2-result-sub': $select.choiceGrouped($group), 'select2-result-single': !$select.choiceGrouped($group) }" class="select2-result-single"><!-- ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --></ul></li></ul></div><ui-select-single></ui-select-single><input ng-disabled="$select.disabled" class="ui-select-focusser ui-select-offscreen ng-scope" type="text" id="focusser-0" aria-label="Select box focus" aria-haspopup="true" role="button"></div>
+                        </div><!-- end ngIf: !selectedProgram.dataEntryMethod || optionSets[prStDe.dataElement.optionSet.id].options.length >= 7 -->
+                        <!-- ngIf: selectedProgram.dataEntryMethod && optionSets[prStDe.dataElement.optionSet.id].options.length < 7 --> 
+                    </div><!-- end ngIf: prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: !prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: interacted(innerForm.foo) -->
+                    <!-- ngIf: warningMessages[prStDe.dataElement.id] -->
+                    <!-- ngIf: errorMessages[prStDe.dataElement.id] -->
+                </ng-form>                
+            </td>
+            <!-- ngIf: allowProvidedElsewhereExists -->
+        </tr><!-- end ngIf: !isHidden(prStDe.dataElement.id) --><!-- end ngRepeat: prStDe in currentStage.programStageDataElements --><!-- ngIf: !isHidden(prStDe.dataElement.id) --><tr class="col-md-12 ng-scope" ng-repeat="prStDe in currentStage.programStageDataElements" ng-if="!isHidden(prStDe.dataElement.id)">
+            <td>
+                <span ng-bind="prStDe.dataElement.formName ? prStDe.dataElement.formName : prStDe.dataElement.name" class="ng-binding">BCG dose</span>
+                <!-- ngIf: prStDe.dataElement.description -->     
+            </td>
+            <td>
+                <ng-form name="innerForm" class="ng-pristine ng-valid ng-valid-required">
+                    <!-- ngIf: prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: !prStDe.dataElement.optionSetValue --><div ng-if="!prStDe.dataElement.optionSetValue" ng-switch="prStDe.dataElement.valueType" class="ng-scope">
+                        <!-- ngSwitchWhen: NUMBER -->
+                        <!-- ngSwitchWhen: INTEGER -->
+                        <!-- ngSwitchWhen: INTEGER_POSITIVE -->
+                        <!-- ngSwitchWhen: INTEGER_NEGATIVE -->
+                        <!-- ngSwitchWhen: INTEGER_ZERO_OR_POSITIVE -->                        
+                        <!-- ngSwitchWhen: LONG_TEXT -->
+                        <!-- ngSwitchWhen: TEXT -->
+                        <!-- ngSwitchWhen: BOOLEAN --><div ng-switch-when="BOOLEAN" class="ng-scope">
+                            <select ng-class="getInputNotifcationClass(prStDe.dataElement.id,false, currentEvent)" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" ng-model="currentEvent[prStDe.dataElement.id]" ng-required="false" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || currentEvent.editingNotAllowed ||&nbsp;assignedFields[prStDe.dataElement.id]" ng-change="saveDatavalue(prStDe, innerForm.foo)" name="foo">
+                                <option value="" class="ng-binding">[Please select]</option>                        
+                                <option value="false" class="ng-binding">No</option>
+                                <option value="true" class="ng-binding">Yes</option>
+                            </select>
+                        </div><!-- end ngSwitchWhen: -->
+                        <!-- ngSwitchWhen: DATE -->
+                        <!-- ngSwitchWhen: TRUE_ONLY -->
+                        <!-- ngSwitchDefault:  -->
+                    </div><!-- end ngIf: !prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: interacted(innerForm.foo) -->
+                    <!-- ngIf: warningMessages[prStDe.dataElement.id] -->
+                    <!-- ngIf: errorMessages[prStDe.dataElement.id] -->
+                </ng-form>                
+            </td>
+            <!-- ngIf: allowProvidedElsewhereExists -->
+        </tr><!-- end ngIf: !isHidden(prStDe.dataElement.id) --><!-- end ngRepeat: prStDe in currentStage.programStageDataElements --><!-- ngIf: !isHidden(prStDe.dataElement.id) --><tr class="col-md-12 ng-scope" ng-repeat="prStDe in currentStage.programStageDataElements" ng-if="!isHidden(prStDe.dataElement.id)">
+            <td>
+                <span ng-bind="prStDe.dataElement.formName ? prStDe.dataElement.formName : prStDe.dataElement.name" class="ng-binding">OPV dose</span>
+                <!-- ngIf: prStDe.dataElement.description -->     
+            </td>
+            <td>
+                <ng-form name="innerForm" class="ng-pristine ng-valid ng-valid-required">
+                    <!-- ngIf: prStDe.dataElement.optionSetValue --><div ng-if="prStDe.dataElement.optionSetValue" class="ng-scope">
+                        <!-- ngIf: !selectedProgram.dataEntryMethod || optionSets[prStDe.dataElement.optionSet.id].options.length >= 7 --><div ng-if="!selectedProgram.dataEntryMethod || optionSets[prStDe.dataElement.optionSet.id].options.length >= 7" class="ng-scope">
+                            <div class="ui-select-container select2 select2-container ng-valid ng-valid-required select2-allowclear" ng-class="{'select2-container-active select2-dropdown-open open': $select.open, 'select2-container-disabled': $select.disabled, 'select2-container-active': $select.focus, 'select2-allowclear': $select.allowClear &amp;&amp; !$select.isEmpty()}" ng-model="currentEvent[prStDe.dataElement.id]" theme="select2" ng-required="false" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || currentEvent.editingNotAllowed ||&nbsp;assignedFields[prStDe.dataElement.id]" name="foo" on-select="saveDatavalue(prStDe, innerForm.foo)" style="width:100%;"><a class="form-control-ui-select select2-choice ui-select-match" ng-click="$select.toggle($event)" aria-label="Select box select" allow-clear="true" ng-class="getInputNotifcationClass(prStDe.dataElement.id, true)" placeholder="Select or search from the list"><span ng-show="$select.isEmpty()" class="select2-chosen ng-binding ng-hide">Select or search from the list</span> <span ng-hide="$select.isEmpty()" class="select2-chosen" ng-transclude=""><span class="ng-binding ng-scope">Dose 1</span></span> <!-- ngIf: $select.allowClear && !$select.isEmpty() --><abbr ng-if="$select.allowClear &amp;&amp; !$select.isEmpty()" class="select2-search-choice-close ng-scope" ng-click="$select.clear($event)"></abbr><!-- end ngIf: $select.allowClear && !$select.isEmpty() --> <span class="select2-arrow ui-select-toggle"><b></b></span></a><div class="ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active select2-display-none" ng-class="{'select2-display-none': !$select.open}"><div class="select2-search" ng-show="$select.searchEnabled"><input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="combobox" aria-expanded="true" aria-owns="ui-select-choices-1" aria-label="Select box" aria-activedescendant="ui-select-choices-row-1-0" class="ui-select-search select2-input ng-pristine ng-untouched ng-valid" ng-model="$select.search"></div><ul class="ui-select-choices ui-select-choices-content select2-results ng-scope" repeat="option.name as option in optionSets[prStDe.dataElement.optionSet.id].options | filter: $select.search | limitTo:maxOptionSize"><li class="ui-select-choices-group" ng-class="{'select2-result-with-children': $select.choiceGrouped($group) }"><div ng-show="$select.choiceGrouped($group)" class="ui-select-choices-group-label select2-result-label ng-binding ng-hide" ng-bind="$group.name"></div><ul role="listbox" id="ui-select-choices-1" ng-class="{'select2-result-sub': $select.choiceGrouped($group), 'select2-result-single': !$select.choiceGrouped($group) }" class="select2-result-single"><!-- ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --></ul></li></ul></div><ui-select-single></ui-select-single><input ng-disabled="$select.disabled" class="ui-select-focusser ui-select-offscreen ng-scope" type="text" id="focusser-1" aria-label="Select box focus" aria-haspopup="true" role="button"></div>
+                        </div><!-- end ngIf: !selectedProgram.dataEntryMethod || optionSets[prStDe.dataElement.optionSet.id].options.length >= 7 -->
+                        <!-- ngIf: selectedProgram.dataEntryMethod && optionSets[prStDe.dataElement.optionSet.id].options.length < 7 --> 
+                    </div><!-- end ngIf: prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: !prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: interacted(innerForm.foo) -->
+                    <!-- ngIf: warningMessages[prStDe.dataElement.id] -->
+                    <!-- ngIf: errorMessages[prStDe.dataElement.id] -->
+                </ng-form>                
+            </td>
+            <!-- ngIf: allowProvidedElsewhereExists -->
+        </tr><!-- end ngIf: !isHidden(prStDe.dataElement.id) --><!-- end ngRepeat: prStDe in currentStage.programStageDataElements --><!-- ngIf: !isHidden(prStDe.dataElement.id) --><tr class="col-md-12 ng-scope" ng-repeat="prStDe in currentStage.programStageDataElements" ng-if="!isHidden(prStDe.dataElement.id)">
+            <td>
+                <span ng-bind="prStDe.dataElement.formName ? prStDe.dataElement.formName : prStDe.dataElement.name" class="ng-binding">Infant Feeding</span>
+                <!-- ngIf: prStDe.dataElement.description -->     
+            </td>
+            <td>
+                <ng-form name="innerForm" class="ng-pristine ng-valid ng-valid-required">
+                    <!-- ngIf: prStDe.dataElement.optionSetValue --><div ng-if="prStDe.dataElement.optionSetValue" class="ng-scope">
+                        <!-- ngIf: !selectedProgram.dataEntryMethod || optionSets[prStDe.dataElement.optionSet.id].options.length >= 7 --><div ng-if="!selectedProgram.dataEntryMethod || optionSets[prStDe.dataElement.optionSet.id].options.length >= 7" class="ng-scope">
+                            <div class="ui-select-container select2 select2-container ng-valid ng-valid-required select2-allowclear" ng-class="{'select2-container-active select2-dropdown-open open': $select.open, 'select2-container-disabled': $select.disabled, 'select2-container-active': $select.focus, 'select2-allowclear': $select.allowClear &amp;&amp; !$select.isEmpty()}" ng-model="currentEvent[prStDe.dataElement.id]" theme="select2" ng-required="false" ng-disabled="selectedEnrollment.status !== 'ACTIVE' || currentEvent.editingNotAllowed ||&nbsp;assignedFields[prStDe.dataElement.id]" name="foo" on-select="saveDatavalue(prStDe, innerForm.foo)" style="width:100%;"><a class="form-control-ui-select select2-choice ui-select-match" ng-click="$select.toggle($event)" aria-label="Select box select" allow-clear="true" ng-class="getInputNotifcationClass(prStDe.dataElement.id, true)" placeholder="Select or search from the list"><span ng-show="$select.isEmpty()" class="select2-chosen ng-binding ng-hide">Select or search from the list</span> <span ng-hide="$select.isEmpty()" class="select2-chosen" ng-transclude=""><span class="ng-binding ng-scope">Exclusive</span></span> <!-- ngIf: $select.allowClear && !$select.isEmpty() --><abbr ng-if="$select.allowClear &amp;&amp; !$select.isEmpty()" class="select2-search-choice-close ng-scope" ng-click="$select.clear($event)"></abbr><!-- end ngIf: $select.allowClear && !$select.isEmpty() --> <span class="select2-arrow ui-select-toggle"><b></b></span></a><div class="ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active select2-display-none" ng-class="{'select2-display-none': !$select.open}"><div class="select2-search" ng-show="$select.searchEnabled"><input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="combobox" aria-expanded="true" aria-owns="ui-select-choices-2" aria-label="Select box" aria-activedescendant="ui-select-choices-row-2-0" class="ui-select-search select2-input ng-pristine ng-untouched ng-valid" ng-model="$select.search"></div><ul class="ui-select-choices ui-select-choices-content select2-results ng-scope" repeat="option.name as option in optionSets[prStDe.dataElement.optionSet.id].options | filter: $select.search | limitTo:maxOptionSize"><li class="ui-select-choices-group" ng-class="{'select2-result-with-children': $select.choiceGrouped($group) }"><div ng-show="$select.choiceGrouped($group)" class="ui-select-choices-group-label select2-result-label ng-binding ng-hide" ng-bind="$group.name"></div><ul role="listbox" id="ui-select-choices-2" ng-class="{'select2-result-sub': $select.choiceGrouped($group), 'select2-result-single': !$select.choiceGrouped($group) }" class="select2-result-single"><!-- ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --></ul></li></ul></div><ui-select-single></ui-select-single><input ng-disabled="$select.disabled" class="ui-select-focusser ui-select-offscreen ng-scope" type="text" id="focusser-2" aria-label="Select box focus" aria-haspopup="true" role="button"></div>
+                        </div><!-- end ngIf: !selectedProgram.dataEntryMethod || optionSets[prStDe.dataElement.optionSet.id].options.length >= 7 -->
+                        <!-- ngIf: selectedProgram.dataEntryMethod && optionSets[prStDe.dataElement.optionSet.id].options.length < 7 --> 
+                    </div><!-- end ngIf: prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: !prStDe.dataElement.optionSetValue -->
+                    <!-- ngIf: interacted(innerForm.foo) -->
+                    <!-- ngIf: warningMessages[prStDe.dataElement.id] -->
+                    <!-- ngIf: errorMessages[prStDe.dataElement.id] -->
+                </ng-form>                
+            </td>
+            <!-- ngIf: allowProvidedElsewhereExists -->
+        </tr><!-- end ngIf: !isHidden(prStDe.dataElement.id) --><!-- end ngRepeat: prStDe in currentStage.programStageDataElements -->
+    </tbody></table><!-- end ngIf: currentEvent && !currentStage.programStageSections.length -->
+    
+    <!-- ngIf: currentEvent && currentStage.programStageSections.length -->
+    
+
+</div><!-- end ngIf: displayCustomForm === 'DEFAULT' -->
+                </div><!-- end ngIf: currentEvent.eventDate -->    
+                <!-- the table form is insensitive to the event date being present. In this situation the eventdate is set inside the table form -->
+                <!-- ngIf: displayCustomForm === 'TABLE' -->
+
+                <!-- data entry form ends -->
+
+                <!-- data entry/event buttons begins -->
+                <div class="form-group">
+                    <div class="row"><hr></div>
+                    <!-- ngIf: currentEvent.eventDate && (currentEvent.status === 'SCHEDULE' || currentEvent.status === 'ACTIVE' || currentEvent.status === 'VISITED') --><a href="" ng-click="completeIncompleteEvent()" class="btn btn-warning ng-binding ng-scope" ng-disabled="currentEvent.enrollmentStatus !== 'ACTIVE' || currentEvent.editingNotAllowed || currentEvent.orgUnit !== selectedOrgUnit.id" ng-if="currentEvent.eventDate &amp;&amp; (currentEvent.status === 'SCHEDULE' || currentEvent.status === 'ACTIVE' || currentEvent.status === 'VISITED')">Complete</a><!-- end ngIf: currentEvent.eventDate && (currentEvent.status === 'SCHEDULE' || currentEvent.status === 'ACTIVE' || currentEvent.status === 'VISITED') -->
+                    <!-- ngIf: currentEvent.eventDate && currentEvent.status === 'COMPLETED' -->                       
+                    <!-- ngIf: currentEvent.eventDate --><a href="" ng-click="validateEvent()" class="btn btn-info ng-binding ng-scope" ng-disabled="currentEvent.enrollmentStatus !== 'ACTIVE' || currentEvent.editingNotAllowed || currentEvent.orgUnit !== selectedOrgUnit.id" ng-if="currentEvent.eventDate">Validate</a><!-- end ngIf: currentEvent.eventDate -->                        
+                    <!-- ngIf: !currentEvent.eventDate -->
+                    <a href="" ng-click="deleteEvent()" ng-disabled="currentEvent.enrollmentStatus === 'COMPLETED' || currentEvent.editingNotAllowed || currentEvent.orgUnit !== selectedOrgUnit.id" class="btn btn-danger ng-binding">Delete</a>
+                </div>
+                <!-- data entry/event buttons ends -->
+
+            </div><!-- end ngIf: currentEvent -->
+        </form>
+
+        <div ng-show="currentEvent" class="remove-default-padding overflow-ellipsis">
+            <div class="row"><hr></div>
+            <div class="add-default-padding">
+                <textarea class="form-control ng-pristine ng-untouched ng-valid" rows="3" ng-model="note" placeholder="Add new note here"></textarea> 
+                <div class="vertical-spacing">
+                    <button type="button" class="btn btn-primary ng-binding" ng-click="addNote()">
+                        Add
+                    </button>        
+                    <button type="button" class="btn btn-default small-horizonal-spacing ng-binding" ng-click="clearNote()">
+                        Clear
+                    </button>
+                </div>
+            </div>
+            <table class="table table-striped dhis2-table-hover">
+                <tbody><!-- ngRepeat: note in currentEvent.notes -->
+            </tbody></table>
+        </div>
+        <div ng-show="currentEvent &amp;&amp; !currentEvent.notes" class="alert alert-warning ng-binding">No notes exist</div> 
+    </div>        
+</div>
+</div>
+                    </div><!-- end ngRepeat: biggerWidget in dashboardWidgets | orderBy:'order' | filter: {parent: 'biggerWidget'} --><div class="col-sm-12 ng-scope" id="report" ng-repeat="biggerWidget in dashboardWidgets | orderBy:'order' | filter: {parent: 'biggerWidget'}" "="">
+                        <!-- ngInclude: biggerWidget.view --><div ng-show="biggerWidget.show" ng-include="biggerWidget.view" ng-class="{true: 'hideInPrint'} [biggerWidget.title != 'report']" class="ng-scope"><div class="panel panel-info ng-scope" ng-controller="TeiReportController">
+    <div class="panel-heading handle bold hideInPrint ng-binding">
+        Report        
+        <span class="pull-right widget-link">
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(reportWidget)">
+                <span ng-show="reportWidget.expand"><i class="fa fa-chevron-up" title="Collapse"></i></span>
+                <span ng-show="!reportWidget.expand" class="ng-hide"><i class="fa fa-chevron-down" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(reportWidget)" title="Remove"><i class="fa fa-times-circle"></i></a>            
+        </span>        
+    </div>
+    <div ng-show="reportWidget.expand" class="panel-body dashboard-widget-container">        
+        <!-- ngIf: !dataExists -->
+        <!-- ngIf: dataExists --><div ng-if="dataExists" class="remove-default-padding hideInPrint ng-scope">
+            <table class="table table-striped dhis2-table-hover">
+                <tbody><!-- ngRepeat: pr in programs --><!-- ngIf: report[pr.id].enrollments --><tr ng-click="showProgramReportDetails(pr)" ng-repeat="pr in programs" ng-if="report[pr.id].enrollments" title="Details" class="ng-scope">                   
+                    <td class="ng-binding">
+                        Child Programme                        
+                    </td>
+                </tr><!-- end ngIf: report[pr.id].enrollments --><!-- end ngRepeat: pr in programs --><!-- ngIf: report[pr.id].enrollments --><!-- end ngRepeat: pr in programs --><!-- ngIf: report[pr.id].enrollments --><!-- end ngRepeat: pr in programs -->
+            </tbody></table>
+        </div><!-- end ngIf: dataExists -->
+        <!-- ngIf: showProgramReportDetailsDiv -->
+    </div>
+</div></div>
+                    </div><!-- end ngRepeat: biggerWidget in dashboardWidgets | orderBy:'order' | filter: {parent: 'biggerWidget'} -->                                       
+                </div>
+            </div>
+            <!-- dashboard bigger widgets end -->
+
+            <!-- dashboard smaller widgets begin -->
+            <div ng-class="widgetSize.smaller" sticky="" offset="50" disabled-sticky="stickyDisabled" class="ng-isolate-scope col-sm-6 col-md-4" style="">
+                <div id="smallerWidget" d2-sortable="" bigger-widgets="{{" dashboardwidgets="" |="" filter:="" {parent:="" 'biggerwidget'}="" }}="" smaller-widgets="{{" 'smallerwidget'}="" class="row connectedSortable empty-dashboard-container ui-sortable">                   
+                    <!-- ngRepeat: smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'} --><div class="col-sm-12 ng-scope" id="current_selections" ng-repeat="smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'}">                        
+                        <!-- ngInclude: smallerWidget.view --><div ng-show="smallerWidget.show" ng-include="smallerWidget.view" ng-class="{true: 'hideInPrint'} [smallerWidget.title != 'report']" class="ng-scope ng-hide hideInPrint"><div class="panel panel-info ng-scope" ng-controller="SelectedInfoController">
+    <div class="panel-heading handle bold ng-binding">
+        Current selections
+        <span class="pull-right widget-link">
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(current_selectionsWidget)">
+                <span ng-show="current_selectionsWidget.expand"><i class="fa fa-chevron-up" title="Collapse"></i></span>
+                <span ng-show="!current_selectionsWidget.expand" class="ng-hide"><i class="fa fa-chevron-down" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(current_selectionsWidget)" title="Remove"><i class="fa fa-times-circle"></i></a>            
+        </span>        
+    </div>    
+    <div ng-show="current_selectionsWidget.expand" class="panel-body dashboard-element-container">
+        <!-- ngRepeat: selection in selections --><div class="row ng-scope" ng-repeat="selection in selections">
+            <div class="col-sm-6 ng-binding">
+                Registering unit
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" value="Kundorma CHP" ng-disabled="true" disabled="disabled">                
+            </div>
+        </div><!-- end ngRepeat: selection in selections --><div class="row ng-scope" ng-repeat="selection in selections">
+            <div class="col-sm-6 ng-binding">
+                Program
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" value="Child Programme" ng-disabled="true" disabled="disabled">                
+            </div>
+        </div><!-- end ngRepeat: selection in selections -->        
+    </div>
+</div>
+</div>
+                    </div><!-- end ngRepeat: smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'} --><div class="col-sm-12 ng-scope" id="feedback" ng-repeat="smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'}">                        
+                        <!-- ngInclude: smallerWidget.view --><div ng-show="smallerWidget.show" ng-include="smallerWidget.view" ng-class="{true: 'hideInPrint'} [smallerWidget.title != 'report']" class="ng-scope ng-hide hideInPrint"><div class="panel panel-info ng-scope" ng-controller="RuleBoundController">
+    <div class="panel-heading handle bold ng-binding">
+        Feedback
+        <span class="pull-right">
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(this.widget)">
+                <span ng-show="this.widget.expand"><i class="fa fa-chevron-up" title="Collapse"></i></span>
+                <span ng-show="!this.widget.expand" class="ng-hide"><i class="fa fa-chevron-down" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(this.widget)" title="Remove"><i class="fa fa-times-circle"></i></a>            
+        </span>        
+    </div>        
+    <div ng-show="this.widget.expand" class="panel-body dashboard-widget-container">        
+        <!-- ngIf: showKeyDataSection -->   
+        <!-- ngIf: showTextSection -->
+        <div ng-show="!showKeyDataSection &amp;&amp; !showTextSection" class="alert alert-warning ng-binding">No feedback exist</div> 
+    </div>
+</div>
+</div>
+                    </div><!-- end ngRepeat: smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'} --><div class="col-sm-12 ng-scope" id="relationships" ng-repeat="smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'}">                        
+                        <!-- ngInclude: smallerWidget.view --><div ng-show="smallerWidget.show" ng-include="smallerWidget.view" ng-class="{true: 'hideInPrint'} [smallerWidget.title != 'report']" class="ng-scope hideInPrint"><div class="panel panel-info ng-scope" ng-controller="RelationshipController">
+    <div class="panel-heading handle bold ng-binding">
+        Relationships
+        <!-- ngIf: selectedTei && selectedProgram.relationshipText  && !selectedTei.inactive -->        
+        
+        <!-- ngIf: selectedTei  && !selectedTei.inactive --><span class="nav-pills ng-scope" ng-if="selectedTei  &amp;&amp; !selectedTei.inactive">
+            | <a href="" ng-click="showAddRelationship(false)" title="Add relationship"><span ng-class="{true: 'widget-link-active', false: 'widget-link'} [showAddRelationshipDiv]" class="ng-binding widget-link">Add</span></a>
+        </span><!-- end ngIf: selectedTei  && !selectedTei.inactive -->
+        
+        <span class="pull-right widget-link">
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(relationshipsWidget)">
+                <span ng-show="relationshipsWidget.expand"><i class="fa fa-chevron-up" title="Collapse"></i></span>
+                <span ng-show="!relationshipsWidget.expand" class="ng-hide"><i class="fa fa-chevron-down" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(relationshipsWidget)" title="Remove"><i class="fa fa-times-circle"></i></a>            
+        </span>        
+    </div>
+    <div ng-show="relationshipsWidget.expand" class="panel-body dashboard-widget-container">
+        <div ng-show="selectedTei &amp;&amp; !selectedTei.relationships || selectedTei.relationships.length < 1" class="alert alert-warning ng-binding">No relationships exist</div> 
+        <div ng-show="!selectedTei" class="alert alert-danger ng-binding ng-hide">No tracked entity instances, relationship not possible</div> 
+        
+        <!-- ngIf: relatedTeis.length > 0 -->
+    </div>
+</div></div>
+                    </div><!-- end ngRepeat: smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'} --><div class="col-sm-12 ng-scope" id="profile" ng-repeat="smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'}">                        
+                        <!-- ngInclude: smallerWidget.view --><div ng-show="smallerWidget.show" ng-include="smallerWidget.view" ng-class="{true: 'hideInPrint'} [smallerWidget.title != 'report']" class="ng-scope hideInPrint"><div class="panel panel-info ng-scope" ng-controller="ProfileController">
+    <div class="panel-heading handle bold ng-binding">
+        Profile
+        <!-- ngIf: !enrollmentEditing && !selectedTei.inactive --><span class="nav-pills ng-scope" ng-if="!enrollmentEditing &amp;&amp; !selectedTei.inactive">
+            | <a href="" ng-click="enableEdit()" title="Edit profile"><span ng-class="{true: 'widget - link - active', false: 'widget - link'} [!editingDisabled]" class="ng-binding widget - link">Edit</span></a>
+        </span><!-- end ngIf: !enrollmentEditing && !selectedTei.inactive -->
+
+        <span class="pull-right widget-link">            
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(profileWidget)">
+                <span ng-show="profileWidget.expand"><i class="fa fa-chevron-up" title="Collapse"></i></span>
+                <span ng-show="!profileWidget.expand" class="ng-hide"><i class="fa fa-chevron-down" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(profileWidget)" title="Remove"><i class="fa fa-times-circle"></i></a>            
+        </span>        
+    </div>
+    <div ng-show="profileWidget.expand" class="panel-body dashboard-widget-container">
+        <form name="outerForm" novalidate="" class="ng-pristine ng-valid ng-valid-required">
+            <!-- ngIf: !enrollmentEditing --><div ng-if="!enrollmentEditing" class="ng-scope">                
+                <!-- ngInclude: 'components/registration/registration.html' --><div ng-include="'components/registration/registration.html'" class="ng-scope"><div ng-controller="RegistrationController" class="ng-scope">
+    <div ng-class="{true: 'bordered-div col-sm-8'} [registrationMode === 'REGISTRATION']" class="">
+    
+        <!--registration form starts -->
+        
+
+            <!-- Entity type begins -->
+            <!-- ngIf: !selectedProgram && registrationMode === 'REGISTRATION' -->
+            <!-- Entity type ends -->        
+
+            <!--custom registration form begins -->
+            <!-- ngIf: customFormExists --><div class="vertical-spacing ng-scope" ng-if="customFormExists">
+
+                <!-- enrollment and incidence dates begin -->
+                <!-- ngIf: selectedProgram && !customForm.hasProgramDate && registrationMode !== 'PROFILE' -->
+                <!-- enrollment and incidence dates end -->
+
+                <!-- ngInclude: '../dhis-web-commons/angular-forms/custom-form.html' --><div ng-include="'../dhis-web-commons/angular-forms/custom-form.html'" class="ng-scope"><d2-custom-form custom-form="customForm" class="ng-scope"><style type="text/css" class="ng-scope">#registration-form th {
+  background-color: #eee;
+  padding: 10px;
+}
+
+#registration-form td {
+  padding: 10px;
+  margin: 5px;
+}
+</style>
+<table id="registration-form" style="width: 300px; padding: 10px;" class="ng-scope">
+	<thead>
+		<tr>
+			<th colspan="2" scope="col">Child registration form</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="text-align: right; width: 100px;">First name</td>
+			<td><input type="text" ng-blur="teiValueUpdated(selectedTei,'w75KJ2mc4zz')" name="w75KJ2mc4zz" element-id="0" attributeid="w75KJ2mc4zz" title="First name " d2-focus-next-on-enter="" ng-model="selectedTei.w75KJ2mc4zz" attribute-data="attributesById.w75KJ2mc4zz" selected-program-id="selectedProgram.id" selected-tei-id="selectedTei.trackedEntityInstance" ng-disabled="editingDisabled || isHidden(attributesById.w75KJ2mc4zz.id) || false" d2-validation="" ng-required=" false" class="ng-pristine ng-untouched ng-valid ng-valid-required" disabled="disabled"> <!-- ngIf: interacted(outerForm.w75KJ2mc4zz) --></td>
+		</tr>
+		<tr>
+			<td style="text-align: right;">Last name</td>
+			<td><input type="text" ng-blur="teiValueUpdated(selectedTei,'zDhUuAYrxNC')" name="zDhUuAYrxNC" element-id="1" attributeid="zDhUuAYrxNC" title="Last name " d2-focus-next-on-enter="" ng-model="selectedTei.zDhUuAYrxNC" attribute-data="attributesById.zDhUuAYrxNC" selected-program-id="selectedProgram.id" selected-tei-id="selectedTei.trackedEntityInstance" ng-disabled="editingDisabled || isHidden(attributesById.zDhUuAYrxNC.id) || false" d2-validation="" ng-required=" false" class="ng-pristine ng-untouched ng-valid ng-valid-required" disabled="disabled"> <!-- ngIf: interacted(outerForm.zDhUuAYrxNC) --></td>
+		</tr>
+		<tr>
+			<td style="text-align: right;">Gender</td>
+			<td><div class="ui-select-container select2 select2-container ng-valid ng-valid-required select2-allowclear select2-container-disabled" ng-class="{'select2-container-active select2-dropdown-open open': $select.open, 'select2-container-disabled': $select.disabled, 'select2-container-active': $select.focus, 'select2-allowclear': $select.allowClear &amp;&amp; !$select.isEmpty()}" style="width:100%;" theme="select2" name="cejWyOfXge6" element-id="2" attributeid="cejWyOfXge6" title="Gender" d2-focus-next-on-enter="" ng-model="selectedTei.cejWyOfXge6" attribute-data="attributesById.cejWyOfXge6" selected-program-id="selectedProgram.id" selected-tei-id="selectedTei.trackedEntityInstance" ng-disabled="editingDisabled || isHidden(attributesById.cejWyOfXge6.id) || false" d2-validation="" ng-required="false" on-select="teiValueUpdated(selectedTei,'cejWyOfXge6')" disabled="disabled"><a class="select2-choice ui-select-match" ng-click="$select.toggle($event)" aria-label="Gender select" style="width:100%;" allow-clear="true" placeholder="Select or search from the list"><span ng-show="$select.isEmpty()" class="select2-chosen ng-binding ng-hide">Select or search from the list</span> <span ng-hide="$select.isEmpty()" class="select2-chosen" ng-transclude=""><span class="ng-binding ng-scope">Female</span></span> <!-- ngIf: $select.allowClear && !$select.isEmpty() --><abbr ng-if="$select.allowClear &amp;&amp; !$select.isEmpty()" class="select2-search-choice-close ng-scope" ng-click="$select.clear($event)"></abbr><!-- end ngIf: $select.allowClear && !$select.isEmpty() --> <span class="select2-arrow ui-select-toggle"><b></b></span></a><div class="ui-select-dropdown select2-drop select2-with-searchbox select2-drop-active select2-display-none" ng-class="{'select2-display-none': !$select.open}"><div class="select2-search" ng-show="$select.searchEnabled"><input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" role="combobox" aria-expanded="true" aria-owns="ui-select-choices-3" aria-label="Gender" aria-activedescendant="ui-select-choices-row-3-0" class="ui-select-search select2-input ng-pristine ng-untouched ng-valid" ng-model="$select.search"></div><ul class="ui-select-choices ui-select-choices-content select2-results ng-scope" repeat="option.name as option in optionSets.pC3N9N77UmT.options | filter: $select.search | limitTo:maxOptionSize"><li class="ui-select-choices-group" ng-class="{'select2-result-with-children': $select.choiceGrouped($group) }"><div ng-show="$select.choiceGrouped($group)" class="ui-select-choices-group-label select2-result-label ng-binding ng-hide" ng-bind="$group.name"></div><ul role="listbox" id="ui-select-choices-3" ng-class="{'select2-result-sub': $select.choiceGrouped($group), 'select2-result-single': !$select.choiceGrouped($group) }" class="select2-result-single"><!-- ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: option in $select.items --></ul></li></ul></div><ui-select-single></ui-select-single><input ng-disabled="$select.disabled" class="ui-select-focusser ui-select-offscreen ng-scope" type="text" id="focusser-3" aria-label="Gender focus" aria-haspopup="true" role="button" disabled="disabled"></div> <!-- ngIf: interacted(outerForm.cejWyOfXge6) --></td>
+		</tr>
+	</tbody>
+</table>
+
+<p class="ng-scope">&nbsp;</p></d2-custom-form></div>
+
+            </div><!-- end ngIf: customFormExists -->
+            <!-- custom registration form ends-->
+
+            <!-- default registration form begins -->
+            <!-- ngIf: !customFormExists -->
+            <!-- default registration form ends -->
+
+            <!-- ngIf: formEmpty && outerForm.submitted -->
+
+            <!-- ngIf: !editingDisabled && registrationMode === 'PROFILE' -->
+
+            <!-- ngIf: registrationMode === 'ENROLLMENT' -->
+
+            <!-- ngIf: registrationMode === 'REGISTRATION' -->
+
+        
+        <!--registration form ends -->
+    </div>
+
+    <!-- ngIf: warningMessages.length > 0 -->
+</div>
+</div>
+            </div><!-- end ngIf: !enrollmentEditing -->
+        </form>
+    </div>
+</div></div>
+                    </div><!-- end ngRepeat: smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'} --><div class="col-sm-12 ng-scope" id="activePrograms" ng-repeat="smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'}">                        
+                        <!-- ngInclude: smallerWidget.view --><div ng-show="smallerWidget.show" ng-include="smallerWidget.view" ng-class="{true: 'hideInPrint'} [smallerWidget.title != 'report']" class="ng-scope ng-hide hideInPrint"><div class="panel panel-info ng-scope" ng-controller="ActiveProgramsController">
+    <div class="panel-heading handle bold ng-binding">
+        Active programs
+        <span class="pull-right widget-link">
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(activeProgramsWidget)">
+                <span ng-show="activeProgramsWidget.expand"><i class="fa fa-chevron-up" title="Collapse"></i></span>
+                <span ng-show="!activeProgramsWidget.expand" class="ng-hide"><i class="fa fa-chevron-down" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(activeProgramsWidget)" title="Remove"><i class="fa fa-times-circle"></i></a>            
+        </span>        
+    </div>    
+    <div ng-show="activeProgramsWidget.expand" class="panel-body dashboard-widget-container">        
+        <div ng-show="activeEnrollments.length === 0" class="alert alert-warning ng-binding ng-hide">No active programs exist</div> 
+        <!-- ngIf: activeEnrollments.length > 0 --><div ng-if="activeEnrollments.length > 0" class="ng-scope">
+            <table class="table table-striped dhis2-table-hover table-bordered">
+                <tbody><!-- ngRepeat: activeEnrollment in activeEnrollments --><tr ng-repeat="activeEnrollment in activeEnrollments" class="ng-scope">
+                    <!-- ngIf: selectedProgram && selectedProgram.id !== activeEnrollment.program -->
+                    <!-- ngIf: selectedProgram && selectedProgram.id === activeEnrollment.program --><td ng-if="selectedProgram &amp;&amp; selectedProgram.id === activeEnrollment.program" class="ng-scope">
+                        <div class="this-active-program ng-binding">Child Programme</div>
+                    </td><!-- end ngIf: selectedProgram && selectedProgram.id === activeEnrollment.program -->
+                </tr><!-- end ngRepeat: activeEnrollment in activeEnrollments -->
+            </tbody></table> 
+        </div><!-- end ngIf: activeEnrollments.length > 0 -->        
+    </div>
+</div>
+</div>
+                    </div><!-- end ngRepeat: smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'} --><div class="col-sm-12 ng-scope" id="notes" ng-repeat="smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'}">                        
+                        <!-- ngInclude: smallerWidget.view --><div ng-show="smallerWidget.show" ng-include="smallerWidget.view" ng-class="{true: 'hideInPrint'} [smallerWidget.title != 'report']" class="ng-scope hideInPrint"><div class="panel panel-info ng-scope" ng-controller="NotesController">
+    <div class="panel-heading handle bold">
+        <!-- ngIf: !messagingPossible --><span ng-if="!messagingPossible" class="ng-binding ng-scope">
+            Notes
+        </span><!-- end ngIf: !messagingPossible -->
+        <!-- ngIf: messagingPossible -->
+
+        <span class="pull-right widget-link">
+            <a class="small-horizonal-spacing" href="" ng-click="expandCollapse(notesWidget)">
+                <span ng-show="notesWidget.expand"><i class="fa fa-chevron-up" title="Collapse"></i></span>
+                <span ng-show="!notesWidget.expand" class="ng-hide"><i class="fa fa-chevron-down" title="Expand"></i></span>
+            </a>
+            <a class="small-horizonal-spacing" href="" ng-click="removeWidget(notesWidget)" title="Remove"><i class="fa fa-times-circle"></i></a>            
+        </span>        
+    </div>
+    <div ng-show="notesWidget.expand" class="panel-body dashboard-widget-container">
+        <div ng-show="showNotesDiv">
+            <div ng-show="!selectedEnrollment" class="alert alert-danger ng-binding ng-hide">Not yet enrolled. Note recording not possible.</div>
+            <div ng-show="selectedEnrollment" class="remove-default-padding overflow-ellipsis">                
+                <div class="add-default-padding">
+                    <textarea class="form-control ng-pristine ng-untouched ng-valid" rows="3" ng-model="note" placeholder="Add new note here"></textarea> 
+                    <div class="vertical-spacing">
+                        <button type="button" class="btn btn-primary ng-binding" ng-click="addNote()">
+                            Add
+                        </button>        
+                        <button type="button" class="btn btn-default small-horizonal-spacing ng-binding" ng-click="clearNote()">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+                <table class="table table-striped dhis2-table-hover">
+                    <tbody><!-- ngRepeat: note in selectedEnrollment.notes| filter:noteSearchText -->
+                </tbody></table>
+            </div>
+            <div ng-show="selectedEnrollment &amp;&amp; !selectedEnrollment.notes" class="alert alert-warning ng-binding">No notes exist</div> 
+        </div>
+        <div ng-show="showMessagingDiv" class="ng-hide">
+            <div class="alert alert-warning ng-binding">Under construction</div> 
+        </div>
+    </div>
+</div>
+</div>
+                    </div><!-- end ngRepeat: smallerWidget in dashboardWidgets  | orderBy:'order' | filter: {parent: 'smallerWidget'} -->                   
+                </div>
+            </div>
+            <!-- dashboard smaller widgets end -->   
+        </div>        
+    </div>
+    <!-- dashboard widgets end -->
+    
+</div>
+
+</div></div>
+
+    </body>
+</html>
