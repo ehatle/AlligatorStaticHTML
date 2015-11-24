@@ -399,7 +399,8 @@
                 <!-- ngIf: currentEvent.eventDate --><div ng-if="currentEvent.eventDate" class="ng-scope">                            
                     <!-- ngIf: displayCustomForm === 'CUSTOM' -->
                     <!-- ngIf: displayCustomForm === 'DEFAULT' --><!-- ngInclude: 'components/dataentry/default-form.html' --><div class="clear vertical-spacing ng-scope" ng-if="displayCustomForm === 'DEFAULT'" ng-include="'components/dataentry/default-form.html'">   
-    <!-- ngIf: currentEvent && !currentStage.programStageSections.length --><table class="dhis2-list-table-striped ng-scope" ng-if="currentEvent &amp;&amp; !currentStage.programStageSections.length">
+    <!-- ngIf: currentEvent && !currentStage.programStageSections.length -->
+    <table class="dhis2-list-table-striped ng-scope" ng-if="currentEvent &amp;&amp; !currentStage.programStageSections.length">
         <thead>
             <tr>
                 <th ng-bind="dataElementLabel" class="ng-binding">Data element</th>
