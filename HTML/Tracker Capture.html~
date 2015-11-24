@@ -375,8 +375,8 @@
                 <!-- event dates/scheduling begin -->
                 <!-- ngIf: (displayCustomForm !== 'TABLE') && !currentStage.periodType --><div class="row ng-scope" ng-if="(displayCustomForm !== 'TABLE') &amp;&amp; !currentStage.periodType">
 
-           <div class="col-md-6">
-                        <!-- ngIf: currentEvent.eventDate || currentEvent.status === 'SKIPPED' || currentEvent.dueDate --><span ng-     if="currentEvent.eventDate || currentEvent.status === 'SKIPPED' || currentEvent.dueDate" class="ng-binding ng-scope">
+<div class="col-md-6">
+                        <!-- ngIf: currentEvent.eventDate || currentEvent.status === 'SKIPPED' || currentEvent.dueDate --><span ng-if="currentEvent.eventDate || currentEvent.status === 'SKIPPED' || currentEvent.dueDate" class="ng-binding ng-scope">
                             Due date
                         </span><!-- end ngIf: currentEvent.eventDate || currentEvent.status === 'SKIPPED' || currentEvent.dueDate -->
                         <!-- ngIf: !currentEvent.eventDate && currentEvent.status !== 'SKIPPED' && !selectedEntity.inactive -->                    
